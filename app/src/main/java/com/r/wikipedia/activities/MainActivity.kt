@@ -1,10 +1,13 @@
 package com.r.wikipedia.activities
 
+import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.BottomNavigationView
-import android.support.v7.app.AppCompatActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import androidx.appcompat.app.AppCompatActivity
+import android.view.MenuItem
 import android.widget.TextView
 import com.r.wikipedia.R
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -33,6 +36,10 @@ class MainActivity : AppCompatActivity() {
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
         textMessage = findViewById(R.id.message)
-        navView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
+        message.setOnClickListener {
+            startActivity(Intent(this, ArticleDetailsActivity::class.java));
+        }
+
     }
+
 }
