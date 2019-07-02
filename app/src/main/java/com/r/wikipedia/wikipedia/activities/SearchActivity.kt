@@ -1,4 +1,4 @@
-package com.r.wikipedia.activities
+package com.r.wikipedia.wikipedia.activities
 
 import android.app.SearchManager
 import android.content.Context
