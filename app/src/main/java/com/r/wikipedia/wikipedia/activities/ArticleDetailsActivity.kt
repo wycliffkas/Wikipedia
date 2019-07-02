@@ -1,4 +1,4 @@
-package com.r.wikipedia.activities
+package com.r.wikipedia.wikipedia.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
