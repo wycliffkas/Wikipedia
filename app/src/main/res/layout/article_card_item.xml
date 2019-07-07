@@ -11,25 +11,29 @@
             android:layout_alignParentTop="true"
             android:layout_centerInParent="true"
             android:background="@android:color/white"
-            app:cardElevation="4dp">
+            app:cardElevation="6dp">
 
         <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
             <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="160dp"
                     android:id="@+id/article_image"
+                    android:scaleType="fitXY"
                     android:src="@drawable/baseline_image_24"/>
 
             <TextView
                     android:id="@+id/article_title"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:gravity="center"
                     android:textAlignment="center"
-                    android:text="Hello"/>
+                    android:text="Hello"
+                    android:background="@color/colorPrimary"
+                    android:textColor="@android:color/white"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
 
         </LinearLayout>
 

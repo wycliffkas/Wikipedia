@@ -1,6 +1,7 @@
 package com.r.wikipedia.wikipedia.fragments
 
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,35 +11,35 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.FragmentActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 
 import com.r.wikipedia.R
+import com.r.wikipedia.wikipedia.WikiApplication
 import com.r.wikipedia.wikipedia.activities.SearchActivity
 import com.r.wikipedia.wikipedia.adapters.ArticleCardAdapter
+import com.r.wikipedia.wikipedia.managers.WikiManager
 import com.r.wikipedia.wikipedia.models.WikiResult
 import com.r.wikipedia.wikipedia.providers.ArticleDataProvider
 import kotlinx.android.synthetic.main.fragment_explorer.*
 import kotlinx.android.synthetic.main.fragment_explorer.view.*
 import java.lang.Exception
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- *
- */
 class ExplorerFragment : Fragment() {
 
-    private val articleProvider : ArticleDataProvider = ArticleDataProvider()
+    private var wikiManager: WikiManager? = null
     var searchCardView : CardView? = null
     var exploreRecycler : RecyclerView? = null
     var adapter: ArticleCardAdapter = ArticleCardAdapter()
     var refresher: SwipeRefreshLayout? = null
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        wikiManager = (activity?.applicationContext as WikiApplication).wikiManager
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,7 +59,7 @@ class ExplorerFragment : Fragment() {
             context!!.startActivity(searchIntent)
         }
 
-        exploreRecycler!!.layoutManager = LinearLayoutManager(context)
+        exploreRecycler!!.layoutManager = GridLayoutManager(context,2)
         exploreRecycler!!.adapter = adapter
 
         refresher?.setOnRefreshListener {
@@ -75,7 +76,7 @@ class ExplorerFragment : Fragment() {
         refresher?.isRefreshing = true
 
         try {
-            articleProvider.getRandom(15) { wikiResult ->
+            wikiManager?.getRandom(15) { wikiResult ->
                 adapter.currentResults.clear()
                 adapter.currentResults.addAll(wikiResult.query!!.pages)
                 activity!!.runOnUiThread {

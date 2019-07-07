@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
         explorerFragment = ExplorerFragment()
         favoriteFragment = FavoriteFragment()
         historyFragment =   HistoryFragment()
+
     }
 
 
@@ -48,6 +49,8 @@ class MainActivity : AppCompatActivity() {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.add(R.id.fragment_container, explorerFragment)
         transaction.commit()
+
+
 
     }
 
