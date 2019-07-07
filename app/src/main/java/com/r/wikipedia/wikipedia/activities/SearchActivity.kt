@@ -7,10 +7,15 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.SearchView
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.r.wikipedia.R
+import com.r.wikipedia.wikipedia.adapters.ArticleListAdapter
+import com.r.wikipedia.wikipedia.providers.ArticleDataProvider
 import kotlinx.android.synthetic.main.activity_search.*
 
 class SearchActivity : AppCompatActivity() {
+    private var articleProvider : ArticleDataProvider = ArticleDataProvider()
+    private var adapter: ArticleListAdapter = ArticleListAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,6 +23,9 @@ class SearchActivity : AppCompatActivity() {
 
         setSupportActionBar(toolbar);
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+
+        search_results_recycler.layoutManager = LinearLayoutManager(this)
+        search_results_recycler.adapter = adapter
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -36,8 +44,15 @@ class SearchActivity : AppCompatActivity() {
         searchView.setIconifiedByDefault(false)
         searchView.requestFocus()
         searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
-            override fun onQueryTextChange(query: String?): Boolean {
+            override fun onQueryTextChange(query: String): Boolean {
+
+                articleProvider.search(query, 0, 20) { wikiResult ->
+                    adapter.currentResults.clear()
+                    adapter.currentResults.addAll(wikiResult.query!!.pages)
+                    runOnUiThread { adapter.notifyDataSetChanged() }
+                }
                 return false
+
             }
 
             override fun onQueryTextSubmit(query: String?): Boolean {

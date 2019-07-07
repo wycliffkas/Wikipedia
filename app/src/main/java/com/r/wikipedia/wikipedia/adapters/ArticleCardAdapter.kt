@@ -5,8 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.r.wikipedia.R
 import com.r.wikipedia.wikipedia.holders.CardHolder
+import com.r.wikipedia.wikipedia.models.WikiPage
 
 class ArticleCardAdapter() : RecyclerView.Adapter<CardHolder>() {
+
+    val currentResults : ArrayList<WikiPage> = ArrayList<WikiPage>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardHolder {
         var cardItem = LayoutInflater.from(parent?.context).
@@ -15,11 +18,12 @@ class ArticleCardAdapter() : RecyclerView.Adapter<CardHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return 15
+        return currentResults.size
     }
 
     override fun onBindViewHolder(holder: CardHolder, position: Int) {
-        //To change body of created functions use File | Settings | File Templates.
+        var page = currentResults[position]
+        holder?.updateWithPage(page)
     }
 
 }
