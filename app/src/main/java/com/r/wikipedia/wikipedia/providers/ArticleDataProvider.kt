@@ -35,12 +35,10 @@ class ArticleDataProvider {
                 }
                 val(data, _) = result
                 responseHandler.invoke(data as WikiResult)
-
             }
-
     }
 
      class WikipediaDataSerializer : ResponseDeserializable<WikiResult> {
-         override fun deserialize(reader: Reader) = Gson().fromJson(reader, WikiResult::class.java)
+         override fun deserialize(reader: Reader) = Gson().fromJson(reader, WikiResult::class.java)!!
      }
 }
