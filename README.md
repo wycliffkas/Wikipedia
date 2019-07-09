@@ -1,16 +1,23 @@
 ## Wikipedia
 An app where you can search and explore 40 million+ wikipedia articles
 
+<p float="left">
+<img src="https://github.com/wycliffkas/Wikipedia/blob/master/shot1.png" width="215" height="400" />
+<img src="https://github.com/wycliffkas/Wikipedia/blob/master/shot2.png" width="215" height="400" />
+<img src="https://github.com/wycliffkas/Wikipedia/blob/master/shot3.png" width="215" height="400" />
+</p>
 ## Technologies Used
-- Android
-- Xml
+- Kotlin
+- Fuel
 - Java
+- Anko
 
 ## Application Features.
-- List Java Developers from Nairobi.
-- Display details of a single developer.
-- Share developer's profile.
-- Open developer's github profile in the browser 
+- List articles
+- View article details
+- Add articles to favorite
+- View history
+- Clear history
 
 ## Prerequisites.
 
