@@ -6,9 +6,10 @@ import com.r.wikipedia.wikipedia.models.WikiThumbnail
 import org.jetbrains.anko.db.delete
 import org.jetbrains.anko.db.insert
 import org.jetbrains.anko.db.rowParser
+import org.jetbrains.anko.db.select
 
 class HistoryRepositories(val databaseHelper: AritcleDatabaseOpenHelper) {
-    private val TABLE_NAME: String = "history"
+    private val TABLE_NAME: String = "History"
 
     fun addHistory(page: WikiPage){
         databaseHelper.use {
@@ -38,6 +39,10 @@ class HistoryRepositories(val databaseHelper: AritcleDatabaseOpenHelper) {
             page.thumbnail = Gson().fromJson(thumbnailJson, WikiThumbnail::class.java)
 
             pages.add(page)
+        }
+
+        databaseHelper.use {
+            select(TABLE_NAME).parseList(articleRowParser)
         }
 
         return pages

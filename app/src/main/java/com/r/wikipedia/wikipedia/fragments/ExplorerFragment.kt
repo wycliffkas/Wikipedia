@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.FragmentActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -58,7 +59,7 @@ class ExplorerFragment : Fragment() {
             context!!.startActivity(searchIntent)
         }
 
-        exploreRecycler!!.layoutManager = LinearLayoutManager(context)
+        exploreRecycler!!.layoutManager = GridLayoutManager(context,2)
         exploreRecycler!!.adapter = adapter
 
         refresher?.setOnRefreshListener {
