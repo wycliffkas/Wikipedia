@@ -15,6 +15,7 @@ An app where you can search and explore 40 million+ wikipedia articles
 
 ### Application Features.
 - List articles
+- Search articles
 - View article details
 - Add articles to favorite
 - View history
